@@ -1,0 +1,54 @@
+# Local infrastructure for Quire. Application servers (API, web) run on the host for fast reload.
+#   docker compose up -d                 → postgres, storage (S3), mailpit
+#   docker compose --profile scan up -d  → + ClamAV (≈1.5 GB RAM; optional in development)
+name: quire
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: quire
+      POSTGRES_PASSWORD: quire_dev_password
+      POSTGRES_DB: quire
+    ports:
+      - "5433:5432" # 5433 on the host to avoid clashing with a locally installed Postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quire -d quire"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # S3-compatible object storage (SeaweedFS). MinIO no longer publishes free community images.
+  # Holds ciphertext only. S3 endpoint: http://localhost:9000
+  storage:
+    image: chrislusf/seaweedfs:4.54
+    command: server -dir=/data -ip.bind=0.0.0.0 -s3 -s3.port=8333 -s3.config=/etc/seaweedfs/s3.json
+    ports:
+      - "9000:8333" # S3 API
+    volumes:
+      - storagedata:/data
+      - ./infra/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro
+
+  # Catches every email the API sends (sign-in codes, notifications). Inbox UI: http://localhost:8025
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports:
+      - "8025:8025" # Web inbox
+      - "1025:1025" # SMTP
+    environment:
+      MP_MAX_MESSAGES: 500
+
+  clamav:
+    image: clamav/clamav:1.4
+    profiles: ["scan"]
+    ports:
+      - "3310:3310"
+    volumes:
+      - clamdb:/var/lib/clamav
+
+volumes:
+  pgdata:
+  storagedata:
+  clamdb:

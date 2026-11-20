@@ -1,0 +1,85 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2347 >>
+stream
+0.122 0.302 0.227 rg 0 732 595 110 re f
+BT 1 1 1 rg /F2 24 Tf 64 784.0 Td (Ashish Rawal) Tj ET
+BT 0.85 0.92 0.88 rg /F1 9.5 Tf 64 749.2 Td (B.Tech Computer Science  |  ashish.rawal@example.com  |  +91 98101 23456  |  New Delhi) Tj ET
+BT 0.12 0.12 0.11 rg /F2 13 Tf 64 692.0 Td (Education) Tj ET
+0.8 G 0.6 w 64 679.1 m 531 679.1 l S
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 665.1 Td (B.Tech, Computer Science and Engineering, Delhi Technological University, 2023-2027. CGPA) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 649.9 Td (8.9/10.) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 628.7 Td (Class XII \(CBSE\), Delhi Public School R.K. Puram, 2023. 95.2%.) Tj ET
+BT 0.12 0.12 0.11 rg /F2 13 Tf 64 601.5 Td (Experience) Tj ET
+0.8 G 0.6 w 64 588.6 m 531 588.6 l S
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 574.6 Td (Software Engineering Intern, a Bengaluru fintech, May-July 2026. Built a reconciliation) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 559.4 Td (dashboard in React and FastAPI that cut manual checks from two hours to fifteen minutes a) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 544.2 Td (day.) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 522.9 Td (Teaching Assistant, Data Structures \(DTU\), Jan-May 2026. Ran weekly lab sessions for 60) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 507.7 Td (students and wrote 40 auto-graded practice problems.) Tj ET
+BT 0.12 0.12 0.11 rg /F2 13 Tf 64 480.5 Td (Projects) Tj ET
+0.8 G 0.6 w 64 467.6 m 531 467.6 l S
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 453.6 Td (Quire \(case study\): a privacy-first print-ordering prototype for local print shops, with a) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 438.4 Td (customer app and a shop-owner workspace.) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 417.2 Td (Smart Irrigation with IoT: soil-moisture sensors and an ESP32 controller that reduced water) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 402.0 Td (use in a campus garden by 31% over one semester.) Tj ET
+BT 0.12 0.12 0.11 rg /F2 13 Tf 64 374.7 Td (Skills) Tj ET
+0.8 G 0.6 w 64 361.9 m 531 361.9 l S
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 347.9 Td (Languages: Python, TypeScript, Java, SQL.  Frameworks: React, Next.js, FastAPI.  Tools: Git,) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 332.7 Td (Docker, Figma.) Tj ET
+BT 0.5 0.5 0.5 rg /F1 8 Tf 64 36 Td (Sample document created for the Quire prototype. Fictional person.) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 1126 >>
+stream
+BT 0.12 0.12 0.11 rg /F2 13 Tf 64 770.0 Td (Achievements and activities) Tj ET
+0.8 G 0.6 w 64 757.1 m 531 757.1 l S
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 743.1 Td (Smart India Hackathon 2025 - national finalist \(team of six\) for an offline-first ration-) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 727.9 Td (card verification app.) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 706.7 Td (Google Developer Student Club, DTU - design lead. Organised a 300-person UI design workshop) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 691.5 Td (series.) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 670.2 Td (Published 'Low-cost soil moisture sensing for urban gardens' at a student IEEE conference,) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 655.0 Td (2026.) Tj ET
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 633.8 Td (Languages spoken: English, Hindi, Punjabi.) Tj ET
+BT 0.12 0.12 0.11 rg /F2 13 Tf 64 602.6 Td (References) Tj ET
+0.8 G 0.6 w 64 589.7 m 531 589.7 l S
+BT 0.12 0.12 0.11 rg /F1 10.5 Tf 64 575.7 Td (Available on request.) Tj ET
+BT 0.5 0.5 0.5 rg /F1 8 Tf 64 36 Td (Sample document created for the Quire prototype. Fictional person.) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000326 00000 n 
+0000000462 00000 n 
+0000002861 00000 n 
+0000002997 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+4175
+%%EOF

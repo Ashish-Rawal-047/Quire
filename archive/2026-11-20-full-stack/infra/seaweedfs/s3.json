@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "quire-dev",
+      "credentials": [{ "accessKey": "quire", "secretKey": "quire_dev_password" }],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}

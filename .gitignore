@@ -1,0 +1,44 @@
+# Secrets: never commit environment files, keys or certificates.
+# Only .env.example files (variable names + placeholders) are tracked.
+.env
+.env.*
+*.env
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+.npmrc
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Node / Next
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Tooling output
+.qa/
+coverage/
+*.log
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+var/
+
+# Copied from node_modules by apps/web/scripts/copy-pdf-worker.mjs
+apps/web/public/pdf.worker.min.mjs
+apps/web/public/pdfjs/

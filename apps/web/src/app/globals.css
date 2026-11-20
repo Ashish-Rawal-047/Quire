@@ -1,0 +1,464 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Quire design tokens — blue and white
+   Raw values live in CSS variables (themeable); @theme maps them to utilities.
+   Tailwind's default palette, radii and shadows are cleared on purpose so the
+   only options available are the ones in this system.
+   ────────────────────────────────────────────────────────────────────────── */
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces — white, with cool blue-grey wells and hairlines */
+  --paper: #ffffff;          /* page background */
+  --surface: #ffffff;        /* panels, inputs, sheets */
+  --sunken: #f3f6fc;         /* wells, tracks, skeletons */
+  --hover: #f1f5fd;          /* hover fill for neutral controls */
+  --rule: #e2e8f2;           /* hairlines, dividers */
+  --rule-strong: #c5d1e4;    /* control borders */
+
+  /* Ink — navy charcoal */
+  --ink: #0f1b2d;            /* primary text */
+  --ink-2: #34425b;          /* secondary text */
+  --ink-muted: #5a6780;      /* tertiary text — 5.4:1 on paper */
+  --ink-faint: #8f9bb1;      /* placeholders, disabled glyphs (non-essential) */
+
+  /* Brand — Quire blue */
+  --brand: #1d4ed8;          /* fills (buttons) — 6.7:1 with white */
+  --brand-hover: #1e40af;
+  --brand-press: #1e3a8a;
+  --brand-ink: #1d4ed8;      /* brand-coloured text/links */
+  --brand-tint: #e8efff;     /* selected backgrounds */
+  --brand-tint-strong: #d2e0ff;
+  --on-brand: #ffffff;
+  --focus: #2563eb;
+
+  /* Feedback */
+  --danger: #b42318;
+  --danger-hover: #912018;
+  --danger-ink: #912018;
+  --danger-tint: #fdecea;
+  --warning-ink: #8a5a12;
+  --warning-tint: #fdf3e1;
+  --success-ink: #13734b;
+  --success-tint: #e2f4ea;
+  --info-ink: #1e4fa8;
+  --info-tint: #e7effc;
+
+  /* Order status — one hue per stage, always paired with icon + label */
+  --st-new: #0e8aa6;        --st-new-ink: #0b6b80;        --st-new-tint: #e0f4f8;
+  --st-accepted: #7a4fd1;   --st-accepted-ink: #5e3aae;   --st-accepted-tint: #f0eafb;
+  --st-printing: #c27a12;   --st-printing-ink: #8a5a12;   --st-printing-tint: #fdf3e1;
+  --st-ready: #16895a;      --st-ready-ink: #13734b;      --st-ready-tint: #e2f4ea;
+  --st-done: #64748b;       --st-done-ink: #475569;       --st-done-tint: #edf1f6;
+  --st-cancelled: #b42318;  --st-cancelled-ink: #912018;  --st-cancelled-tint: #fdecea;
+
+  --scrim: rgb(15 27 45 / 0.45);
+  --overlay-shadow: 0 1px 2px rgb(15 27 45 / 0.06), 0 12px 32px -8px rgb(15 27 45 / 0.22);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #0b1220;
+  --surface: #111a2b;
+  --sunken: #080d18;
+  --hover: #18233a;
+  --rule: #1f2b44;
+  --rule-strong: #2e3c5a;
+
+  --ink: #e8eef9;
+  --ink-2: #c3cde0;
+  --ink-muted: #8f9bb3;
+  --ink-faint: #5f6b85;
+
+  --brand: #2f6bf0;
+  --brand-hover: #4079f5;
+  --brand-press: #2a5fd6;
+  --brand-ink: #8fb2ff;
+  --brand-tint: #13213f;
+  --brand-tint-strong: #1a2d55;
+  --on-brand: #ffffff;
+  --focus: #6f9bff;
+
+  --danger: #e0574d;
+  --danger-hover: #ea6a61;
+  --danger-ink: #f5968f;
+  --danger-tint: #2f1514;
+  --warning-ink: #e8b766;
+  --warning-tint: #2b2112;
+  --success-ink: #6fd3a3;
+  --success-tint: #10281d;
+  --info-ink: #9db6f5;
+  --info-tint: #142039;
+
+  --st-new: #38b2cc;        --st-new-ink: #7fd3e6;        --st-new-tint: #0f2a33;
+  --st-accepted: #a487e6;   --st-accepted-ink: #c2adf0;   --st-accepted-tint: #221a35;
+  --st-printing: #d9a24a;   --st-printing-ink: #e8b766;   --st-printing-tint: #2b2112;
+  --st-ready: #43b884;      --st-ready-ink: #6fd3a3;      --st-ready-tint: #10281d;
+  --st-done: #8b98ad;       --st-done-ink: #b4bfd1;       --st-done-tint: #1b2336;
+  --st-cancelled: #e0574d;  --st-cancelled-ink: #f5968f;  --st-cancelled-tint: #2f1514;
+
+  --scrim: rgb(0 0 0 / 0.6);
+  --overlay-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 16px 40px -8px rgb(0 0 0 / 0.6);
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-hover: var(--hover);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-faint: var(--ink-faint);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-press: var(--brand-press);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-tint-strong: var(--brand-tint-strong);
+  --color-on-brand: var(--on-brand);
+  --color-focus: var(--focus);
+
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-ink: var(--danger-ink);
+  --color-danger-tint: var(--danger-tint);
+  --color-warning-ink: var(--warning-ink);
+  --color-warning-tint: var(--warning-tint);
+  --color-success-ink: var(--success-ink);
+  --color-success-tint: var(--success-tint);
+  --color-info-ink: var(--info-ink);
+  --color-info-tint: var(--info-tint);
+
+  --color-st-new: var(--st-new);
+  --color-st-new-ink: var(--st-new-ink);
+  --color-st-new-tint: var(--st-new-tint);
+  --color-st-accepted: var(--st-accepted);
+  --color-st-accepted-ink: var(--st-accepted-ink);
+  --color-st-accepted-tint: var(--st-accepted-tint);
+  --color-st-printing: var(--st-printing);
+  --color-st-printing-ink: var(--st-printing-ink);
+  --color-st-printing-tint: var(--st-printing-tint);
+  --color-st-ready: var(--st-ready);
+  --color-st-ready-ink: var(--st-ready-ink);
+  --color-st-ready-tint: var(--st-ready-tint);
+  --color-st-done: var(--st-done);
+  --color-st-done-ink: var(--st-done-ink);
+  --color-st-done-tint: var(--st-done-tint);
+  --color-st-cancelled: var(--st-cancelled);
+  --color-st-cancelled-ink: var(--st-cancelled-ink);
+  --color-st-cancelled-tint: var(--st-cancelled-tint);
+
+  --color-scrim: var(--scrim);
+
+  --font-sans: var(--font-jakarta), var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-*: initial;
+  --shadow-overlay: var(--overlay-shadow);
+}
+
+@theme {
+  /* Type scale — semantic names, 4-pt aligned line heights */
+  --text-*: initial;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.25rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5rem;
+  --text-input: 1rem; /* 16px on mobile prevents iOS zoom-on-focus */
+  --text-input--line-height: 1.5rem;
+  --text-body-lg: 1.0625rem;
+  --text-body-lg--line-height: 1.625rem;
+  --text-title-sm: 1.0625rem;
+  --text-title-sm--line-height: 1.5rem;
+  --text-title-sm--letter-spacing: -0.01em;
+  --text-title: 1.375rem;
+  --text-title--line-height: 1.75rem;
+  --text-title--letter-spacing: -0.015em;
+  --text-headline: 1.875rem;
+  --text-headline--line-height: 2.25rem;
+  --text-headline--letter-spacing: -0.02em;
+  --text-display: 2.5rem;
+  --text-display--line-height: 2.875rem;
+  --text-display--letter-spacing: -0.02em;
+  --text-display-lg: 3.5rem;
+  --text-display-lg--line-height: 3.75rem;
+  --text-display-lg--letter-spacing: -0.025em;
+
+  /* Radii — one scale: small controls / controls / containers */
+  --radius-*: initial;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;    /* feature cards, finder tiles */
+  --radius-2xl: 24px;   /* hero cards */
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 26rem; /* 416px — large phones */
+
+  --animate-fade-in: fade-in 160ms var(--ease-out);
+  --animate-fade-out: fade-out 120ms var(--ease-in-out);
+  --animate-rise-in: rise-in 200ms var(--ease-out);
+  --animate-sheet-in: sheet-in 240ms var(--ease-out);
+  --animate-spin: spin 0.9s linear infinite;
+  --animate-pulse: pulse 1.6s var(--ease-in-out) infinite;
+  --animate-indeterminate: indeterminate 1.3s var(--ease-in-out) infinite;
+
+  @keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes fade-out { from { opacity: 1 } to { opacity: 0 } }
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(6px) scale(0.985) }
+    to { opacity: 1; transform: none }
+  }
+  @keyframes sheet-in { from { transform: translateY(100%) } to { transform: none } }
+  @keyframes spin { to { transform: rotate(360deg) } }
+  @keyframes pulse { 50% { opacity: 0.55 } }
+  @keyframes indeterminate {
+    from { transform: translateX(-100%) }
+    to { transform: translateX(250%) }
+  }
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    /* Plus Jakarta Sans has a narrow word space; a touch more reads better in paragraphs. */
+    word-spacing: 0.05em;
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--brand-tint-strong);
+    color: var(--ink);
+  }
+
+  /* One focus treatment across the product. Inputs override with an inset ring. */
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  hr {
+    border-color: var(--rule);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ── Signature utilities ─────────────────────────────────────────────── */
+
+/* Perforated tear-line used on the job ticket (order confirmation). */
+@utility perforation {
+  height: 1px;
+  background-image: linear-gradient(to right, var(--rule-strong) 55%, transparent 0);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+/* Fine ruled-paper texture for the landing hero and empty states. Decorative only. */
+@utility paper-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 27px,
+    color-mix(in oklab, var(--rule) 70%, transparent) 27px,
+    color-mix(in oklab, var(--rule) 70%, transparent) 28px
+  );
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* ── Landing printer illustration (components/demo/printer-hero.tsx) ─────────────────────── */
+@keyframes printer-hum {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(0.6px); }
+}
+@keyframes printer-led {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+@keyframes printer-head {
+  0% { left: 4%; }
+  50% { left: calc(96% - 2.5rem); }
+  100% { left: 4%; }
+}
+.printer-body { animation: printer-hum 0.3s ease-in-out infinite; }
+.printer-led { animation: printer-led 1s ease-in-out infinite; }
+.printer-head { animation: printer-head 0.9s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .printer-body, .printer-led, .printer-head { animation: none; }
+}
+
+/* QR scanner viewfinder sweep (components/demo/qr-scanner.tsx) */
+@keyframes qr-scan {
+  0%, 100% { top: 6%; }
+  50% { top: 92%; }
+}
+.qr-scan-line { animation: qr-scan 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .qr-scan-line { animation: none; top: 50%; }
+}
+
+/* Stylised street map behind the shop pin (shop page). Decorative only. */
+.shop-map {
+  background-color: #eaf0fb;
+  background-image:
+    linear-gradient(115deg, transparent 46%, #ffffff 46%, #ffffff 54%, transparent 54%),
+    linear-gradient(20deg, transparent 47%, #ffffff 47%, #ffffff 51%, transparent 51%),
+    linear-gradient(90deg, transparent 30%, #f7f9fe 30%, #f7f9fe 33%, transparent 33%),
+    linear-gradient(0deg, transparent 62%, #f7f9fe 62%, #f7f9fe 65%, transparent 65%),
+    radial-gradient(circle at 78% 22%, #d6e8d6 0 14%, transparent 15%),
+    linear-gradient(0deg, #e2e9f6 1px, transparent 1px),
+    linear-gradient(90deg, #e2e9f6 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 22px 22px, 22px 22px;
+}
+:root[data-theme="dark"] .shop-map {
+  background-color: #13213f;
+  background-image:
+    linear-gradient(115deg, transparent 46%, #1f2b44 46%, #1f2b44 54%, transparent 54%),
+    linear-gradient(20deg, transparent 47%, #1f2b44 47%, #1f2b44 51%, transparent 51%),
+    linear-gradient(90deg, transparent 30%, #18233a 30%, #18233a 33%, transparent 33%),
+    linear-gradient(0deg, transparent 62%, #18233a 62%, #18233a 65%, transparent 65%),
+    radial-gradient(circle at 78% 22%, #10281d 0 14%, transparent 15%),
+    linear-gradient(0deg, #182540 1px, transparent 1px),
+    linear-gradient(90deg, #182540 1px, transparent 1px);
+}
+
+/* Illustrated scan icon: the line sweeps while its tile is selected. */
+@keyframes icon-scan {
+  0%, 100% { transform: translateY(-9px); }
+  50% { transform: translateY(9px); }
+}
+.icon-scan-line { animation: icon-scan 1.8s ease-in-out infinite; transform-box: fill-box; }
+@media (prefers-reduced-motion: reduce) {
+  .icon-scan-line { animation: none; }
+}
+
+/* ── Shop workspace icons (shop-icons.tsx). Hover movements follow the nearest .group ──── */
+.shop-ic { --ic-fill: transparent; --ic-accent: currentColor; --ic-paper: var(--surface); }
+.group:hover .shop-ic:not([data-inverse]) { --ic-fill: var(--brand-tint); }
+.shop-ic[data-active] { --ic-fill: var(--brand-tint-strong); --ic-accent: var(--brand); }
+.shop-ic[data-inverse] { --ic-fill: rgb(255 255 255 / 0.22); --ic-accent: #ffffff; --ic-paper: var(--brand); }
+.shop-ic * { transform-box: fill-box; transition: transform 380ms cubic-bezier(0.34, 1.5, 0.5, 1), opacity 200ms; }
+.shop-ic .ic-bar { transform-origin: 50% 100%; }
+.group:hover .shop-ic .ic-bar-1 { transform: scaleY(1.45); }
+.group:hover .shop-ic .ic-bar-2 { transform: scaleY(0.7); transition-delay: 40ms; }
+.group:hover .shop-ic .ic-bar-3 { transform: scaleY(0.85); transition-delay: 80ms; }
+.group:hover .shop-ic .ic-drop { transform: translateY(3px); }
+.group:hover .shop-ic .ic-front { transform: translate(-1.5px, 1.5px) rotate(-5deg); }
+.shop-ic .ic-hand { transform-origin: 0% 0%; }
+.group:hover .shop-ic .ic-hand { transform: rotate(80deg); }
+.group:hover .shop-ic .ic-paper { transform: translateY(2.5px); }
+.shop-ic .ic-swing { transform-origin: 22% 22%; }
+.group:hover .shop-ic .ic-swing { animation: ic-swing 900ms ease-out; }
+@keyframes ic-swing { 0% { transform: rotate(0); } 25% { transform: rotate(14deg); } 50% { transform: rotate(-9deg); } 75% { transform: rotate(4deg); } 100% { transform: rotate(0); } }
+.group:hover .shop-ic .ic-knob-a { transform: translateX(-6px); }
+.group:hover .shop-ic .ic-knob-b { transform: translateX(6px); }
+.group:hover .shop-ic .ic-scan { animation: icon-scan 1.4s ease-in-out infinite; }
+.shop-ic .ic-pop { transform-origin: 50% 50%; }
+.group:hover .shop-ic .ic-pop { transform: scale(1.18) rotate(-8deg); }
+.shop-ic .ic-turn { transform-origin: 50% 50%; }
+.group:hover .shop-ic .ic-turn { transform: rotate(90deg); }
+.shop-ic[data-active] .ic-led { animation: printer-led 1.6s ease-in-out infinite; }
+
+/* ── Order progress: a sheet travels to the next step (shop-orders.tsx) ────────────────── */
+@keyframes step-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes paper-x { from { left: 0%; } to { left: 100%; } }
+@keyframes paper-arc {
+  0% { transform: translate(-50%, -50%) translateY(0) rotate(-8deg) scale(0.6); opacity: 0; }
+  12% { opacity: 1; }
+  50% { transform: translate(-50%, -50%) translateY(-16px) rotate(10deg) scale(1); }
+  88% { opacity: 1; }
+  100% { transform: translate(-50%, -50%) translateY(0) rotate(-4deg) scale(0.55); opacity: 0; }
+}
+@keyframes step-pop { 0% { transform: scale(0.6); } 60% { transform: scale(1.22); } 100% { transform: scale(1); } }
+.step-fill { transform-origin: 0 50%; animation: step-fill 950ms cubic-bezier(0.55, 0, 0.3, 1) both; }
+.paper-travel { position: absolute; top: 50%; animation: paper-x 950ms cubic-bezier(0.55, 0, 0.3, 1) both; }
+.paper-travel > * { animation: paper-arc 950ms ease-in-out both; }
+.step-pop { animation: step-pop 420ms 880ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* ── Entrances and small motion used across the shop workspace and reviews ─────────────── */
+@keyframes enter-up { from { opacity: 0; transform: translateY(10px) scale(0.985); } to { opacity: 1; transform: none; } }
+@keyframes page-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes star-pop { 0% { transform: scale(0.5) rotate(-20deg); } 55% { transform: scale(1.35) rotate(8deg); } 100% { transform: scale(1) rotate(0); } }
+@keyframes bar-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes width-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes live-ping { 0% { transform: scale(1); opacity: 0.6; } 80%, 100% { transform: scale(2.6); opacity: 0; } }
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+@keyframes draw { from { stroke-dashoffset: var(--len, 300); } to { stroke-dashoffset: 0; } }
+@keyframes float-slow { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-10px, 8px); } }
+@keyframes nav-mark { from { transform: scaleY(0); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
+
+.enter { animation: enter-up 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.page-in { animation: page-in 320ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.star-pop { animation: star-pop 420ms cubic-bezier(0.34, 1.56, 0.64, 1); }
+.bar-grow { transform-origin: 50% 100%; animation: bar-grow 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.width-grow { transform-origin: 0 50%; animation: width-grow 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+.live-dot { position: relative; }
+.live-dot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: inherit; animation: live-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.shimmer {
+  background-image: linear-gradient(90deg, transparent 0%, rgb(255 255 255 / 0.45) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+.draw { stroke-dasharray: var(--len, 300); animation: draw 1.1s 200ms cubic-bezier(0.4, 0, 0.2, 1) both; }
+.float-slow { animation: float-slow 9s ease-in-out infinite; }
+.nav-mark { transform-origin: 50% 50%; animation: nav-mark 300ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+/* Dotted texture for brand banners. */
+.dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.22) 1px, transparent 1.2px);
+  background-size: 14px 14px;
+  mask-image: linear-gradient(115deg, transparent 35%, #000 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-ic *, .group:hover .shop-ic * { transition: none; animation: none !important; transform: none !important; }
+  .step-fill, .step-pop { animation: none; }
+  .paper-travel { display: none; }
+  .enter, .page-in, .star-pop, .bar-grow, .width-grow, .draw, .float-slow, .nav-mark, .shimmer, .live-dot::after { animation: none !important; }
+  .draw { stroke-dasharray: none; }
+}
